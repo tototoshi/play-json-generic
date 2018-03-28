@@ -30,6 +30,10 @@ lazy val root = project
             <distribution>repo</distribution>
           </license>
         </licenses>
+        <scm>
+          <url>git@github.com:tototoshi/play-json-generic.git</url>
+          <connection>scm:git:git@github.com:tototoshi/play-json-generic.git</connection>
+        </scm>
         <developers>
           <developer>
             <id>tototoshi</id>
