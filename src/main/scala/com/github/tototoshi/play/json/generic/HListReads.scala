@@ -1,20 +1,17 @@
 package com.github.tototoshi.play.json.generic
 
-import play.api.libs.json.{
-  JsResult,
-  JsSuccess,
-  JsValue,
-  JsonConfiguration,
-  Reads
-}
+import play.api.libs.functional.syntax._
+import play.api.libs.json._
 import shapeless._
 import shapeless.labelled.FieldType
 
-trait GenericReads {
+trait HListReads[HList] {
 
-  trait HListReads[HList] {
-    def reads(j: JsValue): JsResult[HList]
-  }
+  def reads(j: JsValue): JsResult[HList]
+
+}
+
+object HListReads {
 
   implicit def hnilReads: HListReads[HNil] = new HListReads[HNil] {
     override def reads(j: JsValue): JsResult[HNil] = JsSuccess(HNil)
@@ -28,8 +25,6 @@ trait GenericReads {
       tReads: HListReads[T]): HListReads[FieldType[K, H] :: T] =
     new HListReads[FieldType[K, H] :: T] {
       override def reads(j: JsValue): JsResult[FieldType[K, H] :: T] = {
-        import play.api.libs.json.{JsResult, _}
-        import play.api.libs.functional.syntax._
         val key = config.naming(witness.value.name)
         val h = hReads.value
           .reads(j(key))
@@ -37,14 +32,6 @@ trait GenericReads {
         val t: JsResult[T] = tReads.reads(j)
         h(t)
       }
-    }
-
-  implicit def genericReads[T, U](implicit
-                                  config: JsonConfiguration,
-                                  gen: LabelledGeneric.Aux[T, U],
-                                  reads: Lazy[HListReads[U]]): Reads[T] =
-    Reads[T] { j =>
-      reads.value.reads(j).map(gen.from)
     }
 
 }

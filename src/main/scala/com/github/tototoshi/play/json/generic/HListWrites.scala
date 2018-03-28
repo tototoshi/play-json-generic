@@ -4,11 +4,14 @@ import play.api.libs.json._
 import shapeless._
 import shapeless.labelled.FieldType
 
-trait GenericWrites {
+trait HListWrites[HList] {
 
-  trait HListWrites[HList] {
-    def writes(o: HList): Seq[(String, JsValue)]
-  }
+  def writes(o: HList): Seq[(String, JsValue)]
+
+}
+
+object HListWrites {
+
   implicit def hnilWrites: HListWrites[HNil] = new HListWrites[HNil] {
     override def writes(o: HNil): Seq[(String, JsValue)] =
       Seq.empty[(String, JsValue)]
@@ -28,14 +31,6 @@ trait GenericWrites {
           case hl => Seq.empty[(String, JsValue)]
         }
       }
-    }
-
-  implicit def genericWrites[T, U](implicit
-                                   config: JsonConfiguration,
-                                   gen: LabelledGeneric.Aux[T, U],
-                                   writes: Lazy[HListWrites[U]]): OWrites[T] =
-    OWrites[T] { o =>
-      JsObject(writes.value.writes(gen.to(o)))
     }
 
 }
