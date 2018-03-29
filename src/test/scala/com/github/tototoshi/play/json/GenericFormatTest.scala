@@ -10,7 +10,7 @@ class GenericTest extends FunSuite with Matchers {
   import com.github.tototoshi.play.json.generic._
 
   test("it can read and write Json") {
-    val people = Person("John",
+    val person = Person("John",
                         "Lennon",
                         List(Person("Paul", "McCartney", Nil),
                              Person("George", "Harrison", Nil),
@@ -34,8 +34,8 @@ class GenericTest extends FunSuite with Matchers {
                   |  } ]
                   |}""".stripMargin
 
-    Json.prettyPrint(Json.toJson(people)) should be(json)
-    Json.parse(json).as[Person] should be(people)
+    Json.prettyPrint(Json.toJson(person)) should be(json)
+    Json.parse(json).as[Person] should be(person)
   }
 
   test("JsonNaming.SnakeCase") {
