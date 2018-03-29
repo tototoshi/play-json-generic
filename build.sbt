@@ -6,7 +6,7 @@ lazy val root = project
   .settings(
     name := """play-json-generic""",
     organization := "com.github.tototoshi",
-    version := "0.1.0",
+    version := "0.1.1",
     scalaVersion := scalaVersion_2_11,
     crossScalaVersions := Seq(scalaVersion_2_11, scalaVersion_2_12),
     libraryDependencies ++= Seq(

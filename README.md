@@ -8,7 +8,7 @@ Shapeless magic for play-json
 ## Install
 
 ```scala
-libraryDependencies += "com.github.tototoshi" %% "play-json-generic" % "0.1.0"
+libraryDependencies += "com.github.tototoshi" %% "play-json-generic" % "0.1.1"
 ```
 
 ## Usage
