@@ -3,7 +3,7 @@ package com.github.tototoshi.play.json
 import org.scalatest.{FunSuite, Matchers}
 import play.api.libs.json._
 
-class LowerPriorityTest extends FunSuite with Matchers {
+class PriorityTest extends FunSuite with Matchers {
 
   case object A {
     implicit val writes: Writes[A.type] = Writes { a =>
@@ -15,11 +15,16 @@ class LowerPriorityTest extends FunSuite with Matchers {
     }
   }
 
-  import generic.LowPriority._
-
-  test("LowerPriority implicit") {
+  test("LowPriority implicit") {
+    import generic.LowPriority._
     Json.toJson(A) should be(JsString("A"))
     Json.parse(""""A"""").as[A.type] should be(A)
+  }
+
+  test("HighPriority implicit") {
+    import generic._
+    Json.toJson(A) should be(JsObject.empty)
+    Json.parse("""{}""").as[A.type] should be(A)
   }
 
 }
