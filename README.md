@@ -1,6 +1,6 @@
 # play-json-generic
 
-![travis](https://travis-ci.org/tototoshi/play-json-generic.svg?branch=master)
+[![Build Status](https://travis-ci.org/tototoshi/play-json-generic.svg?branch=master)](https://travis-ci.org/tototoshi/play-json-generic)
 
 Shapeless magic for play-json
 
