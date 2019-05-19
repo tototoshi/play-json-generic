@@ -12,7 +12,7 @@ lazy val root = project
     libraryDependencies ++= Seq(
       "com.typesafe.play" %% "play-json" % "2.6.9",
       "com.chuusai" %% "shapeless" % "2.3.3",
-      "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+      "org.scalatest" %% "scalatest" % "3.0.7" % "test"
     ),
     publishMavenStyle := true,
     publishArtifact in Test := false,
