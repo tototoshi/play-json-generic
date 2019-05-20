@@ -22,11 +22,11 @@ lazy val root = project
       else Some("releases" at nexus + "service/local/staging/deploy/maven2")
     },
     pomExtra :=
-      <url>http://github.com/tototoshi/play-json-generic</url>
+      <url>https://github.com/tototoshi/play-json-generic</url>
         <licenses>
           <license>
             <name>Apache License, Version 2.0</name>
-            <url>http://github.com/tototoshi/play-json-generic/blob/master/LICENSE.txt</url>
+            <url>https://github.com/tototoshi/play-json-generic/blob/master/LICENSE.txt</url>
             <distribution>repo</distribution>
           </license>
         </licenses>
@@ -38,7 +38,7 @@ lazy val root = project
           <developer>
             <id>tototoshi</id>
             <name>Toshiyuki Takahashi</name>
-            <url>http://tototoshi.github.com</url>
+            <url>https://tototoshi.github.com</url>
           </developer>
         </developers>
   )
